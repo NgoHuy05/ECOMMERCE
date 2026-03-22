@@ -1,6 +1,6 @@
-import Session from "../models/session.model";
-import User from "../models/user.model";
-import { loginService, refreshTokenService, registerService } from "../services/auth.service";
+import Session from "../models/session.model.js";
+import User from "../models/user.model.js";
+import { loginService, refreshTokenService, registerService } from "../services/auth.service.js";
 
 export const Register = async (req, res) => {
     try {
@@ -59,8 +59,7 @@ export const Logout = async (req, res) => {
         const refreshToken = req.cookies.refreshToken;
         if (refreshToken) {
             await Session.deleteOne({ refreshToken });
-        } 
-        res.clearCookie("refreshToken");
+        } res.clearCookie("refreshToken");
         return res.status(200).json({ message: "Dang xuat thanh cong" });
     } catch (err) {
         console.error("Loi dang xuat", err);
@@ -72,7 +71,7 @@ export const getProfileMe = async (req, res) => {
     try {
         const user = await User.findById(req.user.userId).select("-password");
         if (!user) {
-            return res.status(404).json({ message: "Nguoi dung ko ton tai hoac da bi xoa" });
+            return res.status(401).json({ message: "Nguoi dung ko ton tai hoac da bi xoa" });
         }
         return res.status(200).json({ message: "lay thong tin nguoi dung thanh cong", user });
     } catch (err) {
