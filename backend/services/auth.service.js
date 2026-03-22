@@ -1,7 +1,7 @@
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Session from "../models/session.model";
+import Session from "../models/session.model.js";
 import crypto from "crypto";
 export const registerService = async (data) => {
     const { fullname, email, password, repassword } = data;
