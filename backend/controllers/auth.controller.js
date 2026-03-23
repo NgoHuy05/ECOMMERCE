@@ -15,7 +15,7 @@ export const Register = async (req, res) => {
         });
     } catch (err) {
         console.error("Loi dang ki", err);
-        return res.status(500).json({ message: "Loi he thong" });
+        return res.status(500).json({ message: err.message });
     }
 }
 
@@ -39,7 +39,7 @@ export const Login = async (req, res) => {
         });
     } catch (err) {
         console.error("Loi dang nhap", err);
-        return res.status(500).json({ message: "Loi he thong" });
+        return res.status(500).json({ message: err.message });
     }
 }
 
@@ -50,7 +50,7 @@ export const RefreshToken = async (req, res) => {
         return res.status(200).json({ message: "refreshToken thanh cong", accessToken });
     } catch (err) {
         console.error("Loi refreshToken", err);
-        return res.status(500).json({ message: "Loi he thong" });
+        return res.status(500).json({ message: err.message });
     }
 }
 
@@ -63,7 +63,7 @@ export const Logout = async (req, res) => {
         return res.status(200).json({ message: "Dang xuat thanh cong" });
     } catch (err) {
         console.error("Loi dang xuat", err);
-        return res.status(500).json({ message: "Loi he thong" });
+        return res.status(500).json({ message: err.message });
     }
 }
 
@@ -76,6 +76,6 @@ export const getProfileMe = async (req, res) => {
         return res.status(200).json({ message: "lay thong tin nguoi dung thanh cong", user });
     } catch (err) {
         console.error("loi lay thong tin nguoi dung", err);
-        return res.status(500).json({ message: "Loi he thong" })
+        return res.status(500).json({ message: err.message })
     }
 }
